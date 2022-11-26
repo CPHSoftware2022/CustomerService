@@ -227,7 +227,7 @@ insert into customer (name, password, email, phone, address_id) values ('Rodd Ro
 insert into customer (name, password, email, phone, address_id) values ('Delmar Pestor', 'bdAJMX18', 'dpestork@feedburner.com', '+351 723 125 7634', 81);
 insert into customer (name, password, email, phone, address_id) values ('Allissa Hambelton', 'jskbCdP6U', 'ahambeltonl@deviantart.com', '+33 776 901 6229', 144);
 insert into customer (name, password, email, phone, address_id) values ('Orelle Frohock', 'kO4F7bO', 'ofrohockm@opensource.org', '+380 514 698 6373', 34);
-insert into customer (name, password, email, phone, address_id) values ('Cathyleen Braycotton', 'NwtHDicDMuB6', 'cbraycottonn@mit.edu', '+86 236 552 6933', 202);
+insert into customer (name, password, email, phone, address_id) values ('Cathyleen Braycotton', 'NwtHDicDMuB6', 'cbraycottonn@mit.edu', '+86 236 552 6933', 200);
 insert into customer (name, password, email, phone, address_id) values ('Janella Worgan', 'Krad5KDn', 'jworgano@msu.edu', '+33 538 768 6801', 54);
 insert into customer (name, password, email, phone, address_id) values ('Ignacio Hazelhurst', 'EVqCu92Mr4Q', 'ihazelhurstp@tripod.com', '+63 333 924 6315', 145);
 insert into customer (name, password, email, phone, address_id) values ('Sullivan Methven', '7aEbUXBmV', 'smethvenq@go.com', '+62 937 138 2139', 146);
@@ -241,7 +241,7 @@ insert into customer (name, password, email, phone, address_id) values ('Hobie B
 insert into customer (name, password, email, phone, address_id) values ('Glori Largen', 'BPp2Ju', 'glargeny@pcworld.com', '+62 231 555 9383', 41);
 insert into customer (name, password, email, phone, address_id) values ('Sid Cheasman', 'OCuxFR5id', 'scheasmanz@hp.com', '+86 477 294 4540', 21);
 insert into customer (name, password, email, phone, address_id) values ('Honor Gianasi', '4336C7NPlv', 'hgianasi10@oakley.com', '+86 380 491 4570', 157);
-insert into customer (name, password, email, phone, address_id) values ('Chico Broek', 'T5ZoUnx8FW', 'cbroek11@dropbox.com', '+57 851 793 8363', 201);
+insert into customer (name, password, email, phone, address_id) values ('Chico Broek', 'T5ZoUnx8FW', 'cbroek11@dropbox.com', '+57 851 793 8363', 200);
 insert into customer (name, password, email, phone, address_id) values ('Anjanette Brookwell', 'CeID4J', 'abrookwell12@yelp.com', '+1 127 574 9101', 185);
 insert into customer (name, password, email, phone, address_id) values ('Lynnette Tremoulet', 'LAOjxL0M', 'ltremoulet13@wunderground.com', '+86 962 577 7685', 4);
 insert into customer (name, password, email, phone, address_id) values ('Laird Whate', 'EZ8nXmARZ8', 'lwhate14@zdnet.com', '+351 617 405 2626', 104);
@@ -257,7 +257,7 @@ insert into customer (name, password, email, phone, address_id) values ('Ethelin
 insert into customer (name, password, email, phone, address_id) values ('Zulema Pitkeathly', '0Ea0wZQ', 'zpitkeathly1e@odnoklassniki.ru', '+994 829 823 0949', 21);
 insert into customer (name, password, email, phone, address_id) values ('Filia Blucher', 'Vfzz3VYo', 'fblucher1f@about.com', '+86 667 711 7954', 108);
 insert into customer (name, password, email, phone, address_id) values ('Loren Leadley', '4PcPaY', 'lleadley1g@taobao.com', '+86 988 314 3579', 54);
-insert into customer (name, password, email, phone, address_id) values ('Harvey Banat', 'vH3lJ7PCwj88', 'hbanat1h@qq.com', '+51 717 436 3134', 201);
+insert into customer (name, password, email, phone, address_id) values ('Harvey Banat', 'vH3lJ7PCwj88', 'hbanat1h@qq.com', '+51 717 436 3134', 200);
 insert into customer (name, password, email, phone, address_id) values ('Richmond Warrick', 'TyoruA89', 'rwarrick1i@vistaprint.com', '+92 604 801 5770', 83);
 insert into customer (name, password, email, phone, address_id) values ('Lambert Bartosik', '2InqwS', 'lbartosik1j@yellowbook.com', '+240 152 381 6251', 70);
 insert into customer (name, password, email, phone, address_id) values ('Free Pottell', '7pbMmFtMhL', 'fpottell1k@timesonline.co.uk', '+63 459 434 5473', 163);
