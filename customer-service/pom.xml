@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 
 	<dependencies>
@@ -91,13 +91,13 @@
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit-platform-engine</artifactId>
-			<version>7.8.0</version>
+			<version>7.7.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<version>6.8.0</version>
+			<version>7.7.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -109,13 +109,13 @@
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>6.8.0</version>
+			<version>7.7.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-spring</artifactId>
-			<version>6.8.0</version>
+			<version>7.7.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -123,6 +123,47 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.11.0</version>
 			<scope>test</scope>
+		</dependency>
+
+<!--		Mock-->
+		<dependency>
+			<groupId>org.mock-server</groupId>
+			<artifactId>mockserver-netty</artifactId>
+			<version>3.10.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mock-server</groupId>
+			<artifactId>mockserver-client-java</artifactId>
+			<version>3.10.8</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock -->
+		<dependency>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.9.0</version>
+		</dependency>
+
+
+
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-failsafe-plugin -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-failsafe-plugin</artifactId>
+			<version>3.0.0-M7</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>3.0.0-M7</version>
 		</dependency>
 	</dependencies>
 
@@ -133,14 +174,77 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>3.0.0-M4</version>
+				<!-- adding second test source directory (just for integration tests) -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
+						<id>add-integration-test-source</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/test/java/integration</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.2</version>
+				<executions>
+					<execution>
+						<id>integration-tests</id>
 						<goals>
 							<goal>integration-test</goal>
 							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+<!--			Mock-->
+			<plugin>
+				<groupId>org.mock-server</groupId>
+				<artifactId>mockserver-maven-plugin</artifactId>
+				<version>3.10.8</version>
+				<executions>
+					<execution>
+						<id>process-test-classes</id>
+						<phase>process-test-classes</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>stop</goal>
 						</goals>
 					</execution>
 				</executions>

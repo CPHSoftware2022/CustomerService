@@ -23,4 +23,38 @@ public class AddressEntity {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public int getPostalCode() {
+        return postalCode;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressEntity{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", postalCode=" + postalCode +
+                '}';
+    }
 }
