@@ -124,6 +124,25 @@
 			<version>2.11.0</version>
 			<scope>test</scope>
 		</dependency>
+<!--		Code contract Test-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
+			<version>2.1.1.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-contract-wiremock</artifactId>
+			<version>2.1.1.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-contract-stub-runner</artifactId>
+			<version>2.1.1.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
 
 <!--		Mock-->
 		<dependency>
@@ -248,6 +267,18 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
+				<version>2.1.1.RELEASE</version>
+				<extensions>true</extensions>
+				<configuration>
+					<baseClassForTests>
+						com.example.demo.code_contract.BaseTestClass
+					</baseClassForTests>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
