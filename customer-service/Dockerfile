@@ -2,14 +2,14 @@ FROM openjdk:8 as builder
 WORKDIR /opt/app
 COPY customer-service/.mvn .mvn
 COPY customer-service/mvnw ./
-COPY pom.xml ./
+COPY customer-service/pom.xml ./
 RUN apt-get update && \
     apt-get install dos2unix && \
     apt-get clean
 RUN dos2unix mvnw
 RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline
-COPY /src ./src
+COPY customer-service/src ./src
 RUN ./mvnw clean install
 
 
