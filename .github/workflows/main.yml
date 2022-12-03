@@ -61,7 +61,8 @@ jobs:
         -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
         -e KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1 \
         -e KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1 \
-        --link zookeeper
+        --link zookeeper \
+        -d confluentinc/cp-kafka:7.3.0
 
     - name: Build with Maven
 #       run: mvn clean install
