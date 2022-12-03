@@ -22,6 +22,9 @@ public class CustomerEntity {
     @JoinColumn(name = "address_id")
     private AddressEntity address;
 
+    public CustomerEntity() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -68,5 +71,13 @@ public class CustomerEntity {
 
     public void setAddress(AddressEntity address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
