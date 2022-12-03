@@ -1,7 +1,7 @@
 FROM openjdk:8 as builder
 WORKDIR /opt/app
-COPY /.mvn .mvn
-COPY /mvnw ./
+COPY customer-service/.mvn .mvn
+COPY customer-service/mvnw ./
 COPY pom.xml ./
 RUN apt-get update && \
     apt-get install dos2unix && \
