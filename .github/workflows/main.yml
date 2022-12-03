@@ -56,6 +56,7 @@ jobs:
         zookeeper port: 2181
         # Configure of auto.create.topics.enable
         auto create topic: true
+        create topic: customer-topic
 
 #     - name: Build with Maven
 #       run: mvn clean install
