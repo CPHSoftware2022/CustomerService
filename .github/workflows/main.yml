@@ -14,6 +14,9 @@ on:
   pull_request:
     branches: [ "main", "development" ]
 
+env:
+  RootPassword: mypassword
+
 jobs:
   build:
 
@@ -31,6 +34,17 @@ jobs:
       uses: stCarolas/setup-maven@v4.5
       with:
         maven-version: 3.8.2
+    - name: Set up MySQL
+      uses: mirromutth/mysql-action@v1.1
+      with:
+        host port: 3306
+        container port: 3306
+        character set server: 'utf8'
+        collation server: 'utf8_general_ci'
+        mysql version: latest
+        mysql database: 'customerDB'
+        mysql user: 'root'
+        mysql password: $RootPassword
     - name: Build with Maven
 #       run: mvn clean install
       run: mvn -B package --file customer-service/pom.xml
