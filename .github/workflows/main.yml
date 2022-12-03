@@ -57,9 +57,9 @@ jobs:
         # Configure of auto.create.topics.enable
         auto create topic: true
 
-    - name: Build with Maven
+#     - name: Build with Maven
 #       run: mvn clean install
-      run: mvn -B package --file customer-service/pom.xml
+#       run: mvn -B package --file customer-service/pom.xml
 
     - name: Build the Docker image
       run: docker build . --file customer-service/Dockerfile --tag my-image-name:$(date +%s)
