@@ -56,17 +56,14 @@ public class CustomerController {
     {
         Optional<CustomerEntity> customerEntityOptional = customerRepository.findById(id);
 
-        ResponseEntity<CustomerDTO> responseEntity = customerEntityOptional
-                .map(customerDTOAssembler::toModel)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        ResponseEntity<CustomerDTO> responseEntity = getReponseEntity(customerEntityOptional);
 
         sendKafkaMessage(customerEntityOptional, responseEntity);
 
         return responseEntity;
     }
 
-    private void sendKafkaMessage(Optional<CustomerEntity> customerEntityOptional, ResponseEntity<CustomerDTO> responseEntity){
+    public void sendKafkaMessage(Optional<CustomerEntity> customerEntityOptional, ResponseEntity<CustomerDTO> responseEntity){
         if (customerEntityOptional.isPresent()){
             CustomerEntity customerEntity = customerEntityOptional.get();
             EventModel eventModel = new EventModel("GET", responseEntity.getStatusCode(), customerEntity.toString());
@@ -76,5 +73,12 @@ public class CustomerController {
             EventModel eventModel = new EventModel("GET", responseEntity.getStatusCode(), customerEntity.toString());
             service.sendMessage(eventModel.toString());
         }
+    }
+
+    public ResponseEntity<CustomerDTO> getReponseEntity(Optional<CustomerEntity> customerEntityOptional){
+        return customerEntityOptional
+                .map(customerDTOAssembler::toModel)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

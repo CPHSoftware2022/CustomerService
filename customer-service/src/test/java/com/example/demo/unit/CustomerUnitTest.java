@@ -85,12 +85,12 @@ class CustomerUnitTest {
 	}
 
 	@Test
-	@DisplayName("Testing length of customer list is 21")
+	@DisplayName("Testing length of customer list is 20")
 	void getLengthOfAllCustomers(){
 		System.out.println("--------------- Testing length of customer list is 21 ---------------");
 		List<CustomerEntity> customerEntities = (List<CustomerEntity>) customerRepository.findAll();
 
-		int exp = 21;
+		int exp = 20;
 		int act = customerEntities.size();
 
 		assertEquals(exp, act);

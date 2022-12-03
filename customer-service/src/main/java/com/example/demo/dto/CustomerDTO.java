@@ -13,14 +13,5 @@ public class CustomerDTO extends RepresentationModel<CustomerDTO> {
 
     private AddressEntity address;
 
-    public CustomerDTO(Long id, String name, String email, String phone, AddressEntity address) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-    }
 
-    public CustomerDTO() {
-    }
 }

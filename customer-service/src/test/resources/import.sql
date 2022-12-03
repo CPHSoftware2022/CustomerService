@@ -28,4 +28,3 @@ insert into customer (name, password, email, phone, address_id) values ('Sharia 
 insert into customer (name, password, email, phone, address_id) values ('Giffy Cuxon', 'lE1VKIKG', 'gcuxonh@csmonitor.com', '+46 965 603 8482', 5);
 insert into customer (name, password, email, phone, address_id) values ('Moyra Burge', 'xrWyVLQ0O', 'mburgei@examiner.com', '+506 635 817 3627', 4);
 insert into customer (name, password, email, phone, address_id) values ('Rodd Rosenkranc', 'x8VXQeEYX4c', 'rrosenkrancj@edublogs.org', '+86 783 433 1537', 4);
-insert into customer (name, password, email, phone, address_id) values ('Delmar Pestor', 'bdAJMX18', 'dpestork@feedburner.com', '+351 723 125 7634', 1);

@@ -16,6 +16,16 @@ public class AddressEntity {
     @Column(name = "postal_code", nullable = false)
     private int postalCode;
 
+    public AddressEntity() {
+    }
+
+    public AddressEntity(Long id, String street, String city, int postalCode) {
+        this.id = id;
+        this.street = street;
+        this.city = city;
+        this.postalCode = postalCode;
+    }
+
     public Long getId() {
         return id;
     }
