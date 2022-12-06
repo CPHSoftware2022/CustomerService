@@ -51,10 +51,12 @@ jobs:
     - name: Set up Kafka
       run: docker pull confluentinc/cp-kafka:7.3.0
 #       run: docker pull confluentinc/cp-server:latest
-    - name: Run Zookeeper
-      run: docker run -d --net=host --name=zookeeper -e ZOOKEEPER_CLIENT_PORT=32181 -e ZOOKEEPER_TICK_TIME=2000 -e ZOOKEEPER_SYNC_LIMIT=2 confluentinc/cp-zookeeper:7.3.0
-    - name: Run Kafka
-      run: docker run -d --net=host --name=broker -e KAFKA_ZOOKEEPER_CONNECT=localhost:32181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092 -e KAFKA_BROKER_ID=2 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 confluentinc/cp-kafka:7.3.0
+#     - name: Run Zookeeper
+#       run: docker run -d --net=host --name=zookeeper -e ZOOKEEPER_CLIENT_PORT=32181 -e ZOOKEEPER_TICK_TIME=2000 -e ZOOKEEPER_SYNC_LIMIT=2 confluentinc/cp-zookeeper:7.3.0
+#     - name: Run Kafka
+#       run: docker run -d --net=host --name=broker -e KAFKA_ZOOKEEPER_CONNECT=localhost:32181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092 -e KAFKA_BROKER_ID=2 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 confluentinc/cp-kafka:7.3.0
+
+
 #     - name: Build with Maven
 #       run: mvn clean install
 #       run: mvn -B package --file customer-service/pom.xml
