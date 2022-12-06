@@ -56,7 +56,9 @@ jobs:
 #         zookeeper port: 2181
 #         # Configure of auto.create.topics.enable
 #         auto create topic: true
-        
+
+    - name: Stop Kafka if running
+      run: docker-compose --file "kafka-compose/docker-compose.yml" down
     - name: Start kafka
 #       run: docker-compose -f "kafka-compose/docker-compose.yml" up -d --build
       run: docker-compose --file "kafka-compose/docker-compose.yml" up -d
