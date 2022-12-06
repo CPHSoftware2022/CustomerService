@@ -62,7 +62,7 @@ jobs:
     - name: Start kafka
 #       run: docker-compose -f "kafka-compose/docker-compose.yml" up -d --build
       run: docker-compose --file "kafka-compose/docker-compose.yml" up -d
-    - name: See kafka topics:
+    - name: See kafka topics
       run: ./kafka-topics --bootstrap-server broker:9092 --list
       
 #     - name: Build with Maven
