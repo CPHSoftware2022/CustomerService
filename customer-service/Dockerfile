@@ -7,6 +7,9 @@ RUN apt-get update && \
     apt-get install dos2unix && \
     apt-get clean
 RUN dos2unix mvnw
+RUN apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+RUN docker run -d --net=host --name=zookeeper -e ZOOKEEPER_CLIENT_PORT=32181 -e ZOOKEEPER_TICK_TIME=2000 -e ZOOKEEPER_SYNC_LIMIT=2 confluentinc/cp-zookeeper:7.3.0
+RUN docker run -d --net=host --name=broker -e KAFKA_ZOOKEEPER_CONNECT=localhost:32181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092 -e KAFKA_BROKER_ID=2 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 confluentinc/cp-kafka:7.3.0
 RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline
 COPY customer-service/src ./src
