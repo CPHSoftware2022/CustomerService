@@ -41,26 +41,34 @@ jobs:
     - name: Run MySQL image
       run: docker run --name my-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=$RootPassword -d mysql
 
-    - name: Setup Kafka
-      # You may pin to the exact commit or the version.
-      # uses: 280780363/kafka-action@a66f129ffd34e42d6245b7e25d69e94659a1d444
-      uses: 280780363/kafka-action@v1.0
-      with:
-        # Version of Bitnami Kafka to use
-        kafka version: latest
-        # Version of Bitnami Zookeeper to use
-        zookeeper version: latest
-        # The port of Kafka host
-        kafka port: 9092
-        # The port of Zookeeper host
-        zookeeper port: 2181
-        # Configure of auto.create.topics.enable
-        auto create topic: true
-
-    - name: Build with Maven
-#       run: mvn clean install
-      run: mvn -B package --file customer-service/pom.xml
+#     - name: Setup Kafka
+#       # You may pin to the exact commit or the version.
+#       # uses: 280780363/kafka-action@a66f129ffd34e42d6245b7e25d69e94659a1d444
+#       uses: 280780363/kafka-action@v1.0
+#       with:
+#         # Version of Bitnami Kafka to use
+#         kafka version: latest
+#         # Version of Bitnami Zookeeper to use
+#         zookeeper version: latest
+#         # The port of Kafka host
+#         kafka port: 9092
+#         # The port of Zookeeper host
+#         zookeeper port: 2181
+#         # Configure of auto.create.topics.enable
+#         auto create topic: true
+        
+    - name: Run Zookeeper
+      run: docker run --name zookeeper -p 2181:2181 -e ZOOKEEPER_CLIENT_PORT=2181 -e ZOOKEEPER_TICK_TIME=2000 -d confluentinc/cp-zookeeper:7.3.0
       
+    - name: Run Kafka
+      run: docker run --name broker -p 9092:9092 -e KAFKA_BROKER_ID=1 -e KAFKA_ZOOKEEPER_CONNECT=localhost:2181 -e KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 -e KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1 -e KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1 --link zookeeper -d confluentinc/cp-kafka:7.3.0
+
+    - name: Create Kafak topic
+      run: /opt/confluentinc/cp-kafka:7.3.0/bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic customer-topic
+#     - name: Build with Maven
+#       run: mvn clean install
+#       run: mvn -B package --file customer-service/pom.xml
+
     - name: Build the Docker image
       run: docker build . --file customer-service/Dockerfile --tag my-image-name:$(date +%s)
 
