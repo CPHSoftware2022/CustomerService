@@ -8,6 +8,8 @@ RUN apt-get update && \
     apt-get clean
 RUN dos2unix mvnw
 RUN curl -fsSL https://get.docker.com | sh
+RUN docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock my-container
+RUN docker pull confluentinc/cp-kafka:7.3.0
 RUN docker run -d --net=host --name=zookeeper -e ZOOKEEPER_CLIENT_PORT=32181 -e ZOOKEEPER_TICK_TIME=2000 -e ZOOKEEPER_SYNC_LIMIT=2 confluentinc/cp-zookeeper:7.3.0
 RUN docker run -d --net=host --name=broker -e KAFKA_ZOOKEEPER_CONNECT=localhost:32181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092 -e KAFKA_BROKER_ID=2 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 confluentinc/cp-kafka:7.3.0
 RUN chmod +x ./mvnw
