@@ -41,30 +41,20 @@ jobs:
     - name: Run MySQL image
       run: docker run --name my-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=$RootPassword -d mysql
 
-#     - name: Setup Kafka
-#       # You may pin to the exact commit or the version.
-#       # uses: 280780363/kafka-action@a66f129ffd34e42d6245b7e25d69e94659a1d444
-#       uses: 280780363/kafka-action@v1.0
-#       with:
-#         # Version of Bitnami Kafka to use
-#         kafka version: latest
-#         # Version of Bitnami Zookeeper to use
-#         zookeeper version: latest
-#         # The port of Kafka host
-#         kafka port: 9092
-#         # The port of Zookeeper host
-#         zookeeper port: 2181
-#         # Configure of auto.create.topics.enable
-#         auto create topic: true
 
-    - name: Stop Kafka if running
-      run: docker-compose --file "kafka-compose/docker-compose.yml" down
-    - name: Start kafka
-#       run: docker-compose -f "kafka-compose/docker-compose.yml" up -d --build
-      run: docker-compose --file "kafka-compose/docker-compose.yml" up -d
-    - name: See kafka topics
-      run: ./kafka-topics --bootstrap-server broker:9092 --list
-      
+
+#     - name: Stop Kafka if running
+#       run: docker-compose --file "kafka-compose/docker-compose.yml" down
+#     - name: Start kafka
+#       run: docker-compose --file "kafka-compose/docker-compose.yml" up -d
+
+    - name: Set up Kafka
+      run: docker pull confluentinc/cp-kafka:7.3.0
+#       run: docker pull confluentinc/cp-server:latest
+    - name: Run Zookeeper
+      run: docker run -d --net=host --name=zookeeper -e ZOOKEEPER_CLIENT_PORT=32181 -e ZOOKEEPER_TICK_TIME=2000 -e ZOOKEEPER_SYNC_LIMIT=2 confluentinc/cp-zookeeper:7.3.0
+    - name: Run Kafka
+      run: docker run -d --net=host --name=broker -e KAFKA_ZOOKEEPER_CONNECT=localhost:32181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092 -e KAFKA_BROKER_ID=2 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 confluentinc/cp-kafka:7.3.0
 #     - name: Build with Maven
 #       run: mvn clean install
 #       run: mvn -B package --file customer-service/pom.xml
