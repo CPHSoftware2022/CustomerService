@@ -25,6 +25,17 @@ public class CustomerEntity {
     public CustomerEntity() {
     }
 
+    public CustomerEntity(Long id, String name, String password, String email, String phone, AddressEntity address) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+    }
+
+
+
     public Long getId() {
         return id;
     }
