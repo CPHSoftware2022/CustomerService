@@ -19,9 +19,10 @@ public class EventModel {
 
     @Override
     public String toString() {
-        return "method='" + method + '\'' +
-                ", status=" + status +
-                ", responseBody='" + responseBody + '\'' +
-                '}';
+        return "{"+
+                "\"method\": \"" + method + "\" ," +
+                "\"status\": \"" + status + "\" ," +
+                "\"responseBody\": \"" + responseBody + "\"" +
+                "}";
     }
 }
